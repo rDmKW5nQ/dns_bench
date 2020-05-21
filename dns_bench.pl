@@ -50,7 +50,7 @@ while (my ($name, $ip) = each(%servers))
 			#print $rr->address, "\n";
 		}
 	
-		printf("%-20s %-15s %.10f\n", $name, $ip, $end - $start);
+		printf("%-20s %-15s %.5f\n", $name, $ip, $end - $start);
 	}
 	else 
 	{
