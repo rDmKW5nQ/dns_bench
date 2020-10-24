@@ -6,6 +6,7 @@ use Net::DNS;
 use Time::HiRes;
 
 my $host = 'www.google.com';
+my $errorList = "";
 
 my %servers = (
 	'OpenDNS_1' => '208.67.222.222',
@@ -33,6 +34,11 @@ my %servers = (
 	'OpenNIC' => '94.247.43.254'
 	);
 
+print "\nTiming lookups for $host\n\n";
+printf("%-20s %-15s %4s\n", "Server", "IP", "Time");
+print "-" x 45;
+print "\n";
+
 while (my ($name, $ip) = each(%servers))
 {
 	my $res = Net::DNS::Resolver->new(nameservers => [$ip]);
@@ -54,6 +60,8 @@ while (my ($name, $ip) = each(%servers))
 	}
 	else 
 	{
-		printf("%-10s %-15s failed: %s \n", $name, $ip, $res->errorstring);
+		my $err = sprintf("%-10s %-15s failed: %s \n", $name, $ip, $res->errorstring);
+		$errorList .= $err;
 	}
 }
+print "\n", $errorList, "\n";
