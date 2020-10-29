@@ -4,8 +4,34 @@ use strict;
 use warnings;
 use Net::DNS;
 use Time::HiRes;
+use Socket;
 
-my $host = 'www.google.com';
+my $number_args = $#ARGV + 1;
+my $host = "";
+ 
+my $arg = $ARGV[0];
+chomp($arg);
+
+if ($number_args == 1) 
+{
+	if ($arg eq '--help') 
+	{
+    	print "\nUsage: ".$0. " [lookup_hostname]\n";
+		print "If no hostname is provided www.google.com will be used\n\n";
+    	exit;  
+	}
+	else
+	{
+		$host = $ARGV[0];
+	}
+}
+else 
+{
+	$host = 'www.google.com';
+}  
+
+
+
 my $errorList = "";
 
 my %servers = (
@@ -39,8 +65,15 @@ printf("%-20s %-15s %4s\n", "Server", "IP", "Time");
 print "-" x 45;
 print "\n";
 
+my $start = Time::HiRes::gettimeofday();
+inet_ntoa(inet_aton($host));
+my $end = Time::HiRes::gettimeofday();
+
+printf("%-20s %-15s %.5f\n", "OS_Default", "local", $end - $start);
+
 while (my ($name, $ip) = each(%servers))
 {
+	#todo: this should be a function
 	my $res = Net::DNS::Resolver->new(nameservers => [$ip]);
 	$res->udp_timeout(2);
 	$res->retry(1);
