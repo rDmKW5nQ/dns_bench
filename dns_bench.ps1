@@ -1,5 +1,6 @@
 # Define an array of DNS servers
-$dnsServers = @("8.8.8.8", "8.8.4.4", "208.67.222.222", "208.67.220.220")
+$dnsServers = @("8.8.8.8", "8.8.4.4", "208.67.222.222", "208.67.220.220", "208.67.222.123", "208.67.220.123", "9.9.9.9", "1.1.1.3", "1.0.0.3")
+
 
 # Define the domain to resolve
 $domain = "www.microsoft.com"
