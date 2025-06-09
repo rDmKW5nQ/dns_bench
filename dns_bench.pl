@@ -58,6 +58,10 @@ my %servers = (
 	'Hurricane Electric' => '74.82.42.42', 
 	'guifi-net?' => '109.69.8.51',
 	'OpenNIC' => '94.247.43.254'
+        'DNS4EU Protective' => '86.54.11.1',
+        'DNS4EU Child' => '86.54.11.12',
+        'DNS4EU Adblock' => '86.54.11.13',
+        'DNS4EU Unfiltered' => '86.54.11.100'
 	);
 
 print "\nTiming lookups for $host\n\n";
